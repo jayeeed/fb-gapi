@@ -1,0 +1,6 @@
+.env
+dist/
+build/
+fb_gapi.egg-info/
+test.py
+fb_gapi/__pycache__/
