@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="fb-gapi",
-    version="0.1.13",
+    version="0.1.14",
     author="Jayed",
     author_email="jayedbinjahangir@gmail.com",
     description="A lightweight Python SDK for sending messages via Facebook Messenger",

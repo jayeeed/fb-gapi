@@ -89,12 +89,12 @@ def attachment_payload_local(recipient_id: int, attachment_id: str) -> dict:
     }
 
 
-def extract_chat_messages(user_id: int, fb_json: dict) -> list:
+def extract_chat_messages(recipient_id: int, fb_json: dict) -> list:
     """
     Extracts chat messages from the Facebook API response JSON.
 
     Args:
-        user_id (int): The PSID of the user whose messages we want to extract.
+        recipient_id (int): The PSID of the user whose messages we want to extract.
         fb_json (dict): JSON response from the Facebook Conversations API.
 
     Returns:
@@ -102,14 +102,16 @@ def extract_chat_messages(user_id: int, fb_json: dict) -> list:
     """
     messages_list = [
         {
-            "sender": "user" if msg.get("from", {}).get("id") == user_id else "page",
+            "sender": (
+                "user" if msg.get("from", {}).get("id") == recipient_id else "page"
+            ),
             "message": msg.get("message", ""),
         }
         for conv in fb_json.get("data", [])
         for msg in conv.get("messages", {}).get("data", [])
-        if not user_id
-        or str(msg.get("from", {}).get("id")) == str(user_id)
-        or user_id is None
+        if not recipient_id
+        or str(msg.get("from", {}).get("id")) == str(recipient_id)
+        or recipient_id is None
     ]
 
     return messages_list
