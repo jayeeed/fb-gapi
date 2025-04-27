@@ -3,6 +3,12 @@
 
 A lightweight Python SDK for sending messages (text and image attachments) using the Facebook Graph API along with the Facebook Messenger Send API.
 
+## Installation
+
+```python
+pip install -U fb_gapi
+```
+
 ## 🚀 Features
 
 - **Send Text Messages**: Easily send text messages to users.
