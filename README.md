@@ -1,7 +1,8 @@
 
-# Facebook Messenger Graph API Python SDK
+# Facebook Messenger Graph API Python SDK ( v22.0 )
 
 A lightweight Python SDK for sending messages (text and image attachments) using the Facebook Graph API along with the Facebook Messenger Send API.
+
 
 ## 🚀 Features
 
@@ -68,13 +69,13 @@ except MessengerAPIError as e:
 MessengerAPIError (HTTP 400): [OAuthException] Invalid OAuth access token. (code 190)
 ```
 
-
 ## 📄 Requirements
+
 - **Python 3.6+**
 
 
-
 ## 🛠️ TODO
+
 - **Improve conversation history limit.**
 - **Add support for templates.**
 - **Add support for quick replies.**
@@ -83,4 +84,5 @@ MessengerAPIError (HTTP 400): [OAuthException] Invalid OAuth access token. (code
 
 
 ## 📃 License
+
 MIT License. Use freely and contribute!

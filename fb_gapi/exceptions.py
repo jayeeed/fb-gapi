@@ -1,7 +1,6 @@
 class MessengerAPIError(Exception):
     """
-    Exception raised for errors returned by the Facebook Messenger API.
-    Includes HTTP status code and error details from the API response.
+    Custom exception class for handling API errors.
     """
 
     def __init__(self, status_code, error_response):
