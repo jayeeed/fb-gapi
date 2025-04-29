@@ -2,15 +2,15 @@ from setuptools import setup, find_packages
 
 setup(
     name="fb-gapi",
-    version="0.1.16",
+    version="0.1.17",
     author="Jayed",
     author_email="jayedbinjahangir@gmail.com",
-    description="A lightweight Python SDK for sending messages via Facebook Messenger",
+    description="A lightweight Python Async SDK for sending messages via Facebook Messenger",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/jayeeed/facebook-messenger-sdk",
     packages=find_packages(),
-    install_requires=["requests, httpx, aiofiles"],
+    install_requires=["requests", "httpx", "aiofiles", "httpx-retries"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

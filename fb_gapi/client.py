@@ -1,5 +1,5 @@
 import httpx
-from httpx import RetryPolicy
+from httpx_retries import RetryTransport, Retry
 from .exceptions import MessengerAPIError
 from .utils import (
     message_payload,
@@ -31,15 +31,18 @@ class MessengerClient:
         self.api_version = api_version
         self.api_base_url = f"https://graph.facebook.com/{self.api_version}/me"
 
-        retry_policy = RetryPolicy(
-            retries=max_retries,
-            backoff_factor=0.5,  # exponential backoff starting from 0.5s
-            status_forcelist=[429, 500, 502, 503, 504],  # common FB server errors
+        retry_config = Retry(
+            total=3,
             allowed_methods=["GET", "POST"],
+            status_forcelist=[429, 500, 502, 503, 504],
+            backoff_factor=0.5,
+            backoff_jitter=0.5,
+            max_backoff_wait=10,
         )
 
+        transport = RetryTransport(retry=retry_config)
         self.client = httpx.AsyncClient(
-            timeout=30.0, follow_redirects=True, retry=retry_policy
+            transport=transport, timeout=10.0, follow_redirects=True
         )
 
     async def get_user_name(self, user_id: int) -> str:

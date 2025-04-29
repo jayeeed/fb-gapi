@@ -1,5 +1,5 @@
 
-# Facebook Messenger Graph API Python SDK ( v22.0 )
+# Facebook Messenger Graph API Python Async SDK ( v22.0 )
 
 A lightweight Python SDK for sending messages (text and image attachments) using the Facebook Graph API along with the Facebook Messenger Send API.
 
@@ -32,28 +32,44 @@ client = MessengerClient(access_token="YOUR_PAGE_ACCESS_TOKEN")
 
 ### ✉️ Sending a Text Message
 ```python
-response = client.send_text(recipient_id="USER_PSID", message_text="Hello, user!")
-print(response)
+async def send_text():
+    response = await client.send_text(
+        recipient_id="USER_PSID", message_text="Hello from Python!"
+    )
+    print(response)
 ```
 
 ### 🖼️ Sending an Attachment By URL
 ```python
-image_url = "https://example.com/image.jpg"
-response = client.send_remote_attachment(recipient_id="USER_PSID", image_url=image_url)
-print(response)
+async def send_remote_attachment():
+    response = await client.send_remote_attachment(
+        recipient_id="USER_PSID",
+        image_url="https://example.com/image.jpg",
+    )
+    print(response)
 ```
 
 ### 🖼️ Sending a Local Attachment
 ```python
-file_path = "/path/to/image.jpg"
-response = client.send_local_attachment(recipient_id="USER_PSID", file_path=file_path)
-print(response)
+async def send_local_attachment():
+    response = await client.send_local_attachment(
+        recipient_id="USER_PSID", file_path="./test.png"
+    )
+    print(response)
+```
+
+### Get User Name
+```python
+async def get_user_name():
+    response = await client.get_user_name(user_id="USER_PSID")
+    print(response)
 ```
 
 ### Get Conversation History (Optional Limit)
 ```python
-response = client.get_chat_history(recipient_id="USER_PSID", limit=5)
-print(response)
+async def get_chat_history_limited():
+    response = await client.get_chat_history(recipient_id="USER_PSID", limit=5)
+    print(response)
 ```
 
 ### ⚠️ Error Handling
@@ -61,12 +77,11 @@ This SDK will raise a `MessengerAPIError` when the Facebook API responds with an
 
 ### Example:
 ```python
-from fb_gapi import MessengerAPIError
-
-try:
-    client.send_text("invalid_user_id", "Hi!")
-except MessengerAPIError as e:
-    print(f"GAPI Error: {e}")
+async def example_error_handling():
+    try:
+        await client.send_text("invalid_user_id", "Hi!")
+    except MessengerAPIError as e:
+        print(f"GAPI Error: {e}")
 ```
 
 ### Error Output Example:
