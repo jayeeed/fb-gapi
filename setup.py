@@ -11,10 +11,5 @@ setup(
     url="https://github.com/jayeeed/facebook-messenger-sdk",
     packages=find_packages(),
     install_requires=["requests", "httpx", "aiofiles", "httpx-retries"],
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
     python_requires=">=3.6",
 )
