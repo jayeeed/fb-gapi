@@ -32,7 +32,7 @@ client = MessengerClient(access_token="YOUR_PAGE_ACCESS_TOKEN")
 
 ### ✉️ Sending a Text Message
 ```python
-async def send_text():
+async def asend_text():
     response = await client.send_text(
         recipient_id="USER_PSID", message_text="Hello from Python!"
     )
@@ -41,7 +41,7 @@ async def send_text():
 
 ### 🖼️ Sending an Attachment By URL
 ```python
-async def send_remote_attachment():
+async def asend_remote_attachment():
     response = await client.send_remote_attachment(
         recipient_id="USER_PSID",
         image_url="https://example.com/image.jpg",
@@ -51,7 +51,7 @@ async def send_remote_attachment():
 
 ### 🖼️ Sending a Local Attachment
 ```python
-async def send_local_attachment():
+async def asend_local_attachment():
     response = await client.send_local_attachment(
         recipient_id="USER_PSID", file_path="./test.png"
     )
@@ -60,14 +60,14 @@ async def send_local_attachment():
 
 ### Get User Name
 ```python
-async def get_user_name():
+async def aget_user_name():
     response = await client.get_user_name(user_id="USER_PSID")
     print(response)
 ```
 
 ### Get Conversation History (Optional Limit)
 ```python
-async def get_chat_history_limited():
+async def aget_chat_history_limited():
     response = await client.get_chat_history(recipient_id="USER_PSID", limit=5)
     print(response)
 ```
@@ -77,7 +77,7 @@ This SDK will raise a `MessengerAPIError` when the Facebook API responds with an
 
 ### Example:
 ```python
-async def example_error_handling():
+async def aexample_error_handling():
     try:
         await client.send_text("invalid_user_id", "Hi!")
     except MessengerAPIError as e:

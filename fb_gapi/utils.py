@@ -43,7 +43,34 @@ def attachment_payload_remote(recipient_id: int, attachment_url: str) -> dict:
     }
 
 
-async def attachment_upload_local(file_path):
+def attachment_upload_local(file_path):
+    """
+    Build a multipart/form-data payload for uploading an image via Facebook Messenger.
+
+    Args:
+        file_path (str): The local path to the image file.
+
+    Returns:
+        dict: A dictionary representing the multipart/form-data payload.
+    """
+
+    with open(file_path, "rb") as f:
+        file_data = f.read()
+
+    return {
+        "message": (
+            None,
+            json.dumps(
+                {"attachment": {"type": "image", "payload": {"is_reusable": True}}}
+            ),
+            "application/json",
+        ),
+        "filedata": (os.path.basename(file_path), file_data, "image/png"),
+        "type": (None, "image/png"),
+    }
+
+
+async def aattachment_upload_local(file_path):
     """
     Build a multipart/form-data payload for uploading an image via Facebook Messenger.
 
